@@ -1,17 +1,17 @@
 // board
 let board;
-let boardWidth = 360;
-let boardHeight = 640;
+const boardWidth = 360;
+const boardHeight = 640;
 let context; //drawing on canvas
 
 // bird
-let birdWidth = 34; //width/height ration = 408/228 = 17/12
-let birdHeight = 24;
-let birdX = boardWidth / 8;
-let birdY = boardHeight / 2;
+const birdWidth = 34; //width/height ratio = 408/228 = 17/12
+const birdHeight = 24;
+const birdX = boardWidth / 8;
+const birdY = boardHeight / 2;
 let birdImg;
 
-let bird = {
+const bird = {
   x: birdX,
   y: birdY,
   width: birdWidth,
@@ -19,7 +19,14 @@ let bird = {
 }
 
 // pipes
+let pipeArray = [];
+const pipeWidth = 64; //width/height ratio = 384/3072 = 1/8
+const pipeHeight = 512;
+let pipeX = boardWidth;
+let pipeY = 0;
 
+let topPipeImg;
+let bottomPipeImg;
 
 window.onload = () => {
   board = document.getElementById("board");
@@ -39,6 +46,13 @@ window.onload = () => {
   birdImg.onload = () => {
     context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
   }
+
+  //load pipes
+  topPipeImg = new Image();
+  topPipeImg.src = "/pic/toppipe.png";
+  
+  bottomPipeImg = new Image();
+  bottomPipeImg.src = "/pic/bottompipe.png";
   
   requestAnimationFrame(update);
 }
